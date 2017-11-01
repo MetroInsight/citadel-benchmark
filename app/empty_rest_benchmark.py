@@ -19,25 +19,12 @@ def test_func(iter_range, url, payload):
 
 
 worker_num = 4
-iter_num = 5000
+iter_num = 10
 # Test empty API
-args_list = []
-url = "http://132.239.10.165:8080/test/2"
-data = {
-    'query': {
-        'min_lat': 50,
-        'min_lng': 100,
-        'max_lat': 60,
-        'max_lng': 150
-    }
-}
-for i in range(worker_num):
-    args_list.append((range(0, math.ceil(iter_num/worker_num)), url, data))
-#res = benchmark_one(test_func, args_list, worker_num, iter_num)
 
 # Test real data query
 args_list = []
-url = "http://132.239.10.165:8080/api/querydata/simplebbox"
+url = "http://13.93.152.16:8080/api/querydata/simplebbox"
 data = {
     'query': {
         'min_lat': 32,
@@ -48,6 +35,6 @@ data = {
 }
 for i in range(worker_num):
     args_list.append((range(0, math.ceil(iter_num/worker_num)), url, data))
-res = benchmark_one(test_func, args_list, worker_num, iter_num)
+res = benchmark_one(test_func, args_list, worker_num)
 
 print('REAL DATA QUERY DELAY: {0}'.format(res))
